@@ -108,8 +108,3 @@ Run Project: **F5** (**Cmd+B** on Mac) · Run Current Scene: **F6** (**Cmd+R**) 
 **One thing that surprised me:**
 
 > [A bug, a behavior, a Godot thing. What did you not expect?]
-
----
-
-Questions? Bring them to class, come to [student hours](https://lpcordova.phd/meet),
-or email [LPCordova@willamette.edu](mailto:LPCordova@willamette.edu).
