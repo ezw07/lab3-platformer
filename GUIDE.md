@@ -123,36 +123,36 @@ enum State { IDLE, RUN, AIR }
 var state: State = State.IDLE
 
 func _physics_process(delta: float) -> void:
-    if not is_on_floor():
-        velocity.y += gravity * delta
+	if not is_on_floor():
+		velocity.y += gravity * delta
 
-    var direction := Input.get_axis("move_left", "move_right")
-    velocity.x = direction * speed
+	var direction := Input.get_axis("move_left", "move_right")
+	velocity.x = direction * speed
 
-    match state:
-        State.IDLE:
-            if Input.is_action_just_pressed("jump"):
-                velocity.y = jump_velocity
-            if not is_on_floor():
-                _change_state(State.AIR)
-            elif direction != 0.0:
-                _change_state(State.RUN)
-        State.RUN:
-            if Input.is_action_just_pressed("jump"):
-                velocity.y = jump_velocity
-            if not is_on_floor():
-                _change_state(State.AIR)
-            elif direction == 0.0:
-                _change_state(State.IDLE)
-        State.AIR:
-            if is_on_floor():
-                _change_state(State.IDLE if direction == 0.0 else State.RUN)
+	match state:
+		State.IDLE:
+			if Input.is_action_just_pressed("jump"):
+				velocity.y = jump_velocity
+			if not is_on_floor():
+				_change_state(State.AIR)
+			elif direction != 0.0:
+				_change_state(State.RUN)
+		State.RUN:
+			if Input.is_action_just_pressed("jump"):
+				velocity.y = jump_velocity
+			if not is_on_floor():
+				_change_state(State.AIR)
+			elif direction == 0.0:
+				_change_state(State.IDLE)
+		State.AIR:
+			if is_on_floor():
+				_change_state(State.IDLE if direction == 0.0 else State.RUN)
 
-    move_and_slide()
+	move_and_slide()
 
 func _change_state(new_state: State) -> void:
-    state = new_state
-    print("state: ", State.keys()[new_state])
+	state = new_state
+	print("state: ", State.keys()[new_state])
 ```
 
 Run it. **The game plays exactly the same.** That is the point: a refactor
@@ -187,9 +187,9 @@ visible on screen, not just in the Output panel. In **`player.gd`**:
 
 ```gdscript
 const TEXTURES := {
-    State.IDLE: preload("res://assets/player-idle.png"),
-    State.RUN: preload("res://assets/player-run.png"),
-    State.AIR: preload("res://assets/player-jump.png"),
+	State.IDLE: preload("res://assets/player-idle.png"),
+	State.RUN: preload("res://assets/player-run.png"),
+	State.AIR: preload("res://assets/player-jump.png"),
 }
 ```
 
@@ -197,16 +197,16 @@ const TEXTURES := {
 
 ```gdscript
 func _change_state(new_state: State) -> void:
-    state = new_state
-    $Sprite2D.texture = TEXTURES[new_state]
+	state = new_state
+	$Sprite2D.texture = TEXTURES[new_state]
 ```
 
 3. Face where you run. Add two lines in `_physics_process`, right after the
    `velocity.x = direction * speed` line:
 
 ```gdscript
-    if direction != 0.0:
-        $Sprite2D.flip_h = direction < 0
+	if direction != 0.0:
+		$Sprite2D.flip_h = direction < 0
 ```
 
 Run it. Idle Bearcat, running Bearcat, airborne Bearcat, and the sprite work
@@ -238,8 +238,8 @@ the script it offers to create (`res://spike.gd`). Make the function:
 extends Area2D
 
 func _on_body_entered(body: Node2D) -> void:
-    if body.has_method("respawn"):
-        body.respawn()
+	if body.has_method("respawn"):
+		body.respawn()
 ```
 
 `has_method` again: the spike does not ask "are you the player?", it asks
@@ -252,22 +252,22 @@ the method the spike is calling:
 var spawn_point: Vector2
 
 func _ready() -> void:
-    spawn_point = position
+	spawn_point = position
 ```
 
 ```gdscript
 func respawn() -> void:
-    position = spawn_point
-    velocity = Vector2.ZERO
-    _change_state(State.AIR)
+	position = spawn_point
+	velocity = Vector2.ZERO
+	_change_state(State.AIR)
 ```
 
 And make the void below the map lethal too. At the bottom of
 `_physics_process`, after `move_and_slide()`:
 
 ```gdscript
-    if position.y > get_viewport_rect().size.y + 100.0:
-        respawn()
+	if position.y > get_viewport_rect().size.y + 100.0:
+		respawn()
 ```
 
 **The flag.** New scene, root **`Area2D`** named **`Flag`**, sprite
@@ -279,7 +279,7 @@ And make the void below the map lethal too. At the bottom of
 extends Area2D
 
 func _on_body_entered(body: Node2D) -> void:
-    print("CLEAR!")
+	print("CLEAR!")
 ```
 
 **Dress the level.** In `main.tscn`, instance a `spike.tscn` or two on the
