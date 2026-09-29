@@ -6,6 +6,12 @@ enum State { IDLE, RUN, AIR }
 @export var jump_velocity: float = -520.0
 @export var gravity: float = 1400.0
 
+const TEXTURES := {
+	State.IDLE: preload("res://assets/player-idle.png"),
+	State.RUN: preload("res://assets/player-run.png"),
+	State.AIR: preload("res://assets/player-jump.png"),
+}
+
 var state: State = State.IDLE
 
 func _physics_process(delta: float) -> void:
@@ -14,6 +20,8 @@ func _physics_process(delta: float) -> void:
 
 	var direction := Input.get_axis("move_left", "move_right")
 	velocity.x = direction * speed
+	if direction != 0.0:
+		$Sprite2D.flip_h = direction < 0
 
 	match state:
 		State.IDLE:
@@ -38,4 +46,4 @@ func _physics_process(delta: float) -> void:
 
 func _change_state(new_state: State) -> void:
 	state = new_state
-	print("state: ", State.keys()[new_state])
+	$Sprite2D.texture = TEXTURES[new_state]
