@@ -88,23 +88,20 @@ Run Project: **F5** (**Cmd+B** on Mac) · Run Current Scene: **F6** (**Cmd+R**) 
 
 **Screenshot of your game:**
 
-> [Replace this line with a screenshot. Commit an image to the repo and embed
-> it: `![screenshot](shot.png)`]
+![screenshot](shot.png)
 
 **My states:**
 
-> [List your states and, in a sentence, what each one owns. If you added a
-> state beyond the required three, say what made it earn its keep.]
+> [Idle, Run, and Air. That were the three from class and felt that was needed.]
 
 **My custom feature(s):**
 
-> [What did you add or change to make it yours? A sentence or two each.]
+> [I made it so that the player could double jump]
 
 **My layer map:**
 
-> [In one or two sentences: which layers exist in your game, and who masks
-> whom? Explaining this is part of the lab.]
+> [World, Player, Hazards, Goal. The world is always touchable. The thing that player has to collide. The player comes after because it touches layers below. Hazards and Goals have to be interacted with.]
 
 **One thing that surprised me:**
 
-> [A bug, a behavior, a Godot thing. What did you not expect?]
+> [I probably could have added marionberries to spawn on the platform and make a ghost sprite chase me]

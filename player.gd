@@ -50,6 +50,8 @@ func _physics_process(delta: float) -> void:
 		State.AIR:
 			if is_on_floor():
 				_change_state(State.IDLE if direction == 0.0 else State.RUN)
+			if Input.is_action_just_pressed("jump"):
+				velocity.y = jump_velocity
 
 	move_and_slide()
 	if position.y > get_viewport_rect().size.y + 100.0:
