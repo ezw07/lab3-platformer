@@ -2,6 +2,8 @@
 
 [ext_resource type="PackedScene" path="res://level.tscn" id="1_main"]
 [ext_resource type="PackedScene" uid="uid://dk6kebsslg5g8" path="res://player.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://cb21hk12f1lju" path="res://spike.tscn" id="3_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://n0m1fpqjtj85" path="res://flag.tscn" id="4_lquwl"]
 
 [node name="Main" type="Node2D" unique_id=827261426]
 
@@ -9,3 +11,9 @@
 
 [node name="Player" parent="." unique_id=1266211376 instance=ExtResource("2_0xm2m")]
 position = Vector2(100, 550)
+
+[node name="Spike" parent="." unique_id=1114614402 instance=ExtResource("3_1bvp3")]
+position = Vector2(650, 588)
+
+[node name="Flag" parent="." unique_id=1025476800 instance=ExtResource("4_lquwl")]
+position = Vector2(1000, 170)

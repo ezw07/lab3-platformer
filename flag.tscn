@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://n0m1fpqjtj85"]
+
+[ext_resource type="Script" uid="uid://bi6ugnaycyx6c" path="res://flag.gd" id="1_amn8n"]
+[ext_resource type="Texture2D" uid="uid://oiybawoylj61" path="res://assets/flag.png" id="2_ukulb"]
+
+[node name="Flag" type="Area2D" unique_id=1025476800]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_amn8n")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=395526799]
+texture = ExtResource("2_ukulb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=293640353]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

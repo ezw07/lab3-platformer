@@ -13,6 +13,15 @@ const TEXTURES := {
 }
 
 var state: State = State.IDLE
+var spawn_point: Vector2
+
+func _ready() -> void:
+	spawn_point = position
+	
+func respawn() -> void:
+	position = spawn_point
+	velocity = Vector2.ZERO
+	_change_state(State.AIR)
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -43,6 +52,8 @@ func _physics_process(delta: float) -> void:
 				_change_state(State.IDLE if direction == 0.0 else State.RUN)
 
 	move_and_slide()
+	if position.y > get_viewport_rect().size.y + 100.0:
+		respawn()
 
 func _change_state(new_state: State) -> void:
 	state = new_state
